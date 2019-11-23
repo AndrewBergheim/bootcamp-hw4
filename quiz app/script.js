@@ -14,7 +14,7 @@
 
          let AnswerOneButton = document.createElement("button");
          AnswerOneButton.setAttribute("id","answer-1");
-         AnswerOneButton.setAttribute("class","answer-button correct-answer"); // first answer is correct
+         AnswerOneButton.setAttribute("class","answer-button");
 
          let AnswerTwoButton = document.createElement("button");
          AnswerTwoButton.setAttribute("id","answer-2");
@@ -47,8 +47,70 @@
             let answered = false;
             answered = false;
             TimeRemaining--;
+            let TimeRemainingValidator = TimeRemaining; //this is to make sure the event listeners fire only once
                
-                //quiz conditionals
+                //Event Listeners
+                let answerTarget = document.getElementsByClassName("answer-button");
+                answerTarget[0].addEventListener("click", function(){//a
+                    if (answered === false){
+                        answered = true;
+                        if (questionCount === 1 || questionCount === 5){
+                            questionCount+= 1;
+                        }
+                        else if (TimeRemainingValidator === TimeRemaining){
+                            TimeRemaining -= 15;
+                        }
+                        else {console.log("prevented from firing twice")};
+
+                    }
+                        else {console.log("prevented from firing twice")};
+                    });
+
+                answerTarget[1].addEventListener("click", function(){//b
+                    if (answered === false){
+                        answered = true;
+                        if (questionCount === 3){
+                            questionCount+= 1;
+                        }
+                        else if (TimeRemainingValidator === TimeRemaining){
+                            TimeRemaining -= 15;
+                        }
+                        else {console.log("prevented from firing twice")};
+                    }
+                        else {console.log("prevented from firing twice")};
+                    });
+
+                answerTarget[2].addEventListener("click", function(){//c
+                    if (answered === false){
+                        answered = true;
+                        if (questionCount === 4){
+                            questionCount+= 1;
+                        }
+
+                        else if (TimeRemainingValidator === TimeRemaining){
+                            TimeRemaining -= 15;
+                        }
+                        else {console.log("prevented from firing twice")};
+                    }
+                        else {console.log("prevented from firing twice")};
+                    });
+
+                answerTarget[3].addEventListener("click", function(){//d
+                    if (answered === false){
+                        answered = true;
+                        if (questionCount === 2){
+                            questionCount+= 1;
+                        }
+                        else if (TimeRemainingValidator === TimeRemaining){
+                            TimeRemaining -= 15;
+                        }
+                        else {console.log("prevented from firing twice")};
+                    }
+                        else {console.log("prevented from firing twice")};
+                        });
+                //end Event Listeners
+
+
 
                 if (TimeRemaining < 0){
                     clearInterval(timer);
@@ -62,26 +124,6 @@
                 Answer2Content.innerHTML = question1.answer2
                 Answer3Content.innerHTML = question1.answer3
                 Answer4Content.innerHTML = question1.answer4
-
-                //function def for event listener
-
-                
-
-                // event listener for correct answer
-                let answerTarget = document.getElementsByClassName("answer-button");
-                let Listener1 = answerTarget[0].addEventListener("click", function(){
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 1)
-                        questionCount+= 1;
-                        //remove event listener
-                        
-                        document.removeEventListener("click", Listener1) 
-                        }
-                        else{
-                            console.log("prevented from firing twice")
-                        }
-                    });
                 }
 
             if (questionCount === 2){
@@ -90,19 +132,6 @@
                 Answer2Content.innerHTML = question2.answer2
                 Answer3Content.innerHTML = question2.answer3
                 Answer4Content.innerHTML = question2.answer4// correct
-
-                let answerTarget = document.getElementsByClassName("answer-button");
-                answerTarget[3].addEventListener("click", function(){
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 1)
-                    questionCount+= 1;
-
-                    }
-                    else{
-                        console.log("prevented from firing twice")
-                    }
-                });
             }
 
             if (questionCount === 3){
