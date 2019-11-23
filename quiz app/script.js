@@ -14,19 +14,19 @@
 
          let AnswerOneButton = document.createElement("button");
          AnswerOneButton.setAttribute("id","answer-1");
-         AnswerOneButton.setAttribute("class","answer-button");
+         AnswerOneButton.setAttribute("class","btn btn-info answer-button");
 
          let AnswerTwoButton = document.createElement("button");
          AnswerTwoButton.setAttribute("id","answer-2");
-         AnswerTwoButton.setAttribute("class","answer-button");
+         AnswerTwoButton.setAttribute("class","btn btn-info answer-button");
 
          let AnswerThreeButton = document.createElement("button");
          AnswerThreeButton.setAttribute("id","answer-3");
-         AnswerThreeButton.setAttribute("class","answer-button");
+         AnswerThreeButton.setAttribute("class","btn btn-info answer-button");
 
          let AnswerFourButton = document.createElement("button");
          AnswerFourButton.setAttribute("id", "answer-4");
-         AnswerFourButton.setAttribute("class","answer-button");
+         AnswerFourButton.setAttribute("class","btn btn-info answer-button");
 
          quizDiv.appendChild(mainQuestionHead);
          quizDiv.appendChild(AnswerOneButton);
@@ -40,78 +40,78 @@
         let Answer2Content = document.getElementById("answer-2");
         let Answer3Content = document.getElementById("answer-3");
         let Answer4Content = document.getElementById("answer-4");
+        let answered = false; //this is to make sure the event listeners fire only once
+        let TimeRemainingValidator = TimeRemaining; //this is to make sure the event listeners fire only once
+         
+        //Event Listeners
+         let answerTarget = document.getElementsByClassName("answer-button");
+
+         answerTarget[0].addEventListener("click", function(){//a
+             if (answered === false){
+                 answered = true;
+                 if (questionCount === 1){
+                     questionCount+= 1;
+                 }
+                 else if (TimeRemainingValidator === TimeRemaining){
+                     TimeRemaining -= 15;
+                 }
+                 else {console.log("prevented from firing twice")};
+
+             }
+            else {console.log("prevented from firing twice")};
+             });
+
+         answerTarget[1].addEventListener("click", function(){//b
+             if (answered === false){
+                 answered = true;
+                 if (questionCount === 3){
+                     questionCount+= 1;
+                 }
+                 else if (TimeRemainingValidator === TimeRemaining){
+                     TimeRemaining -= 15;
+                 }
+                 else {console.log("prevented from firing twice")};
+             }
+            else {console.log("prevented from firing twice")};
+             });
+
+         answerTarget[2].addEventListener("click", function(){//c
+             if (answered === false){
+                 answered = true;
+                 if (questionCount === 4 || questionCount === 5){
+                     questionCount+= 1;
+                 }
+
+                 else if (TimeRemainingValidator === TimeRemaining){
+                     TimeRemaining -= 15;
+                 }
+                 else {console.log("prevented from firing twice")};
+             }
+            else {console.log("prevented from firing twice")};
+             });
+
+         answerTarget[3].addEventListener("click", function(){//d
+             if (answered === false){
+                 answered = true;
+                 if (questionCount === 2){
+                     questionCount+= 1;
+                 }
+                 else if (TimeRemainingValidator === TimeRemaining){
+                     TimeRemaining -= 15;
+                 }
+                 else {console.log("prevented from firing twice")};
+             }
+            else {console.log("prevented from firing twice")};
+                 });
+         //end Event Listeners
 
         // start timer
         let timer = setInterval(function(){
         document.getElementById("time").innerHTML = TimeRemaining;
-            let answered = false;
+            
             answered = false;
             TimeRemaining--;
-            let TimeRemainingValidator = TimeRemaining; //this is to make sure the event listeners fire only once
-               
-                //Event Listeners
-                let answerTarget = document.getElementsByClassName("answer-button");
-                answerTarget[0].addEventListener("click", function(){//a
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 1 || questionCount === 5){
-                            questionCount+= 1;
-                        }
-                        else if (TimeRemainingValidator === TimeRemaining){
-                            TimeRemaining -= 15;
-                        }
-                        else {console.log("prevented from firing twice")};
-
-                    }
-                        else {console.log("prevented from firing twice")};
-                    });
-
-                answerTarget[1].addEventListener("click", function(){//b
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 3){
-                            questionCount+= 1;
-                        }
-                        else if (TimeRemainingValidator === TimeRemaining){
-                            TimeRemaining -= 15;
-                        }
-                        else {console.log("prevented from firing twice")};
-                    }
-                        else {console.log("prevented from firing twice")};
-                    });
-
-                answerTarget[2].addEventListener("click", function(){//c
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 4){
-                            questionCount+= 1;
-                        }
-
-                        else if (TimeRemainingValidator === TimeRemaining){
-                            TimeRemaining -= 15;
-                        }
-                        else {console.log("prevented from firing twice")};
-                    }
-                        else {console.log("prevented from firing twice")};
-                    });
-
-                answerTarget[3].addEventListener("click", function(){//d
-                    if (answered === false){
-                        answered = true;
-                        if (questionCount === 2){
-                            questionCount+= 1;
-                        }
-                        else if (TimeRemainingValidator === TimeRemaining){
-                            TimeRemaining -= 15;
-                        }
-                        else {console.log("prevented from firing twice")};
-                    }
-                        else {console.log("prevented from firing twice")};
-                        });
-                //end Event Listeners
-
-
-
+            TimeRemainingValidator = TimeRemaining;
                 if (TimeRemaining < 0){
                     clearInterval(timer);
                     //write loss page
@@ -151,15 +151,15 @@
             }
 
             if (questionCount === 5){
-                QuestionContent.innerHTML = question5.question // correct
+                QuestionContent.innerHTML = question5.question 
                 Answer1Content.innerHTML = question5.answer1 
                 Answer2Content.innerHTML = question5.answer2
-                Answer3Content.innerHTML = question5.answer3
+                Answer3Content.innerHTML = question5.answer3 // correct
                 Answer4Content.innerHTML = question5.answer4
             }
 
             if (questionCount > 5){
-                let Score = TimeRemaining;
+                let score = TimeRemaining;
                 clearInterval(timer);
                 
                 //write high score page
