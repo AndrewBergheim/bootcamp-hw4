@@ -208,6 +208,7 @@ function quiz(){
             scorediv.appendChild(submitHeading);
             scorediv.appendChild(initialInput);
             scorediv.appendChild(submitButton);
+            
 
             document.getElementById("submit-button").addEventListener("click", function(){
                 if (document.getElementById("initial-input").value != ""){
@@ -217,7 +218,12 @@ function quiz(){
                     let nameString = JSON.stringify(nameArray);
                     let scoreString = JSON.stringify(scoreArray);
                     localStorage.setItem("names", nameString);
-                    localStorage.setItem("scores", scoreString); 
+                    localStorage.setItem("scores", scoreString);
+                    //overall high score
+                    if (localStorage.getItem("highscore") == null ||localStorage.getItem("highscore") < score){
+                        localStorage.setItem("highscore", score);
+                        localStorage.setItem("highname", document.getElementById("initial-input").value);
+                    } 
                     window.location.href = "scorelist.html";
                     
                 }
