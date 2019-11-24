@@ -1,7 +1,16 @@
-function viewHighscores(){
-//todo
+
+
+if (localStorage["scores"] == null){
+    var nameArray = [];
+    var scoreArray = [];
 }
 
+else{
+    let storedNames = localStorage.getItem("names")
+    let storedScores = localStorage.getItem("scores")
+    var nameArray = JSON.parse(storedNames);
+    var scoreArray = JSON.parse(storedScores);
+};
 
     
 function quiz(){
@@ -180,8 +189,43 @@ function quiz(){
             let score = TimeRemaining;
             clearInterval(timer);
             
+
             //write high score page
             document.getElementById("quiz-content").remove();
+            let scorediv = document.getElementById("scorediv");
+            let initialInput = document.createElement("input");
+            initialInput.setAttribute("id", "initial-input");
+            
+            let submitButton = document.createElement("button");
+            submitButton.setAttribute("id", "submit-button");
+            submitButton.innerHTML = "Submit";
+            let submitHeading = document.createElement("h1");
+            submitHeading.innerHTML = "You win! Your score is " + score + ". Enter your initials below to add this to your high scores!"
+            
+            //submit function
+            
+            
+            scorediv.appendChild(submitHeading);
+            scorediv.appendChild(initialInput);
+            scorediv.appendChild(submitButton);
+
+            document.getElementById("submit-button").addEventListener("click", function(){
+                if (document.getElementById("initial-input").value != ""){
+                    //localStorage.setItem(document.getElementById("initial-input").value, score)
+                    nameArray.push(document.getElementById("initial-input").value);
+                    scoreArray.push(score);
+                    let nameString = JSON.stringify(nameArray);
+                    let scoreString = JSON.stringify(scoreArray);
+                    localStorage.setItem("names", nameString);
+                    localStorage.setItem("scores", scoreString); 
+                    window.location.href = "scorelist.html";
+                    
+                }
+            });
+
+            
+
+
         }
         console.log(questionCount);
 
