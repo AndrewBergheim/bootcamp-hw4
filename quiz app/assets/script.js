@@ -61,6 +61,8 @@ function quiz(){
     let TimeRemainingValidator = TimeRemaining; //this is to make sure the event listeners fire only once
         
     //Event Listeners
+    let correctSound = new Audio("assets/DingDing.mp3");
+    let wrongSound = new Audio("assets/Gobble.mp3");
         let answerTarget = document.getElementsByClassName("answer-button");
 
         answerTarget[0].addEventListener("click", function(){//a
@@ -69,10 +71,12 @@ function quiz(){
                 if (questionCount === 1){
                     questionCount+= 1;
                     feedbackSpan.innerHTML = "Correct!";
+                    correctSound.play();
                 }
                 else if (TimeRemainingValidator === TimeRemaining){
                     TimeRemaining -= 15;
                     feedbackSpan.innerHTML = "Wrong Answer!";
+                    wrongSound.play();
                 }
                 else {console.log("prevented from firing twice")};
 
@@ -86,10 +90,12 @@ function quiz(){
                 if (questionCount === 3){
                     questionCount+= 1;
                     feedbackSpan.innerHTML = "Correct!";
+                    correctSound.play();
                 }
                 else if (TimeRemainingValidator === TimeRemaining){
                     TimeRemaining -= 15;
                     feedbackSpan.innerHTML = "Wrong Answer!";
+                    wrongSound.play();
                 }
                 else {console.log("prevented from firing twice")};
             }
@@ -102,11 +108,13 @@ function quiz(){
                 if (questionCount === 4 || questionCount === 5){
                     questionCount+= 1;
                     feedbackSpan.innerHTML = "Correct!";
+                    correctSound.play();
                 }
 
                 else if (TimeRemainingValidator === TimeRemaining){
                     TimeRemaining -= 15;
                     feedbackSpan.innerHTML = "Wrong Answer!";
+                    wrongSound.play();
                 }
                 else {console.log("prevented from firing twice")};
             }
@@ -119,10 +127,12 @@ function quiz(){
                 if (questionCount === 2){
                     questionCount+= 1;
                     feedbackSpan.innerHTML = "Correct!";
+                    correctSound.play();
                 }
                 else if (TimeRemainingValidator === TimeRemaining){
                     TimeRemaining -= 15;
                     feedbackSpan.innerHTML = "Wrong Answer!";
+                    wrongSound.play();
                 }
                 else {console.log("prevented from firing twice")};
             }
