@@ -20,28 +20,29 @@
         <div class="col-xs-12"> 
             <h1 id = "highscore" class="col-xs-12"></h1>
         </div>
+    </div>
+    <div class = "row" id = "scorehead-row">
+        <div class = "col-xs-12 col-xl-12">
+        <span id = "scorehead">The list of all scores is as follows:</span>
         </div>
-        <div class = "row">
-            <div class = "col-xs-12 col-xl-12">
-            <span id = "scorehead">The list of all scores is as follows:</span>
-            </div>
-            
-            <div class = "row">
-            <ul id = "scorelist" class="col-xs-12">
+    </div>
         
-            </ul>
-            </div>
-        </div>
+    <div class = "row" id = "scorelist-row">
+        <ul id = "scorelist" class="col-xs-12">
+    
+        </ul>
+    </div>
+    
 
-        <div class = "row">
-            <div class = "col-xs-4 col-md-4 col-xl-4" style="text-align: left">
-        <button onclick="localStorage.clear(); document.getElementById('scorelist').remove" class="btn btn-info">Clear Scores</button>
-            </div>
-            <div class = "col-xs-4 col-md-4 col-xl-4"></div>
-            <div class = "col-xs-4 col-md-4 col-xl-4"> 
-                <a href = "index.html" class = "btn btn-info" style="text-align: right; margin: 20px top;">Go Back to Landing Page</a>
-            </div>
-        </div>   
+    <div class = "row">
+        <div class = "col-xs-12 col-md-4 col-xl-4 text-center">
+        <button id = "clearbutton"class="btn btn-info">Clear Scores</button>
+        </div>
+        <div class = "col-xs-12 col-md-4 col-xl-4" id = "buttondivider"></div>
+        <div class = "col-xs-12 col-md-4 col-xl-4 text-center"> 
+            <button onclick = "window.location.href = 'index.html'" id = "backbtn" class = "btn btn-info">Go Back to Landing Page</button>
+        </div>
+    </div>   
 </div>  
 <script src = "assets/scorescript.js">
 </script>

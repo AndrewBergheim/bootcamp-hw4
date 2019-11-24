@@ -198,6 +198,7 @@ function quiz(){
             
             let submitButton = document.createElement("button");
             submitButton.setAttribute("id", "submit-button");
+            submitButton.setAttribute("class", "btn btn-info");
             submitButton.innerHTML = "Submit";
             let submitHeading = document.createElement("h1");
             submitHeading.innerHTML = "You win! Your score is " + score + ". Enter your initials below to add this to your high scores!"
